@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.11, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.18, for Win64 (x86_64)
 --
 -- Host: localhost    Database: tp
 -- ------------------------------------------------------
--- Server version	5.7.11-0ubuntu6
+-- Server version	5.7.18
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,58 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `logininfo`
+--
+
+DROP TABLE IF EXISTS `logininfo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `logininfo` (
+  `machineId` int(11) NOT NULL,
+  `user` varchar(30) DEFAULT NULL,
+  `lastLogin` datetime DEFAULT NULL,
+  PRIMARY KEY (`machineId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logininfo`
+--
+
+LOCK TABLES `logininfo` WRITE;
+/*!40000 ALTER TABLE `logininfo` DISABLE KEYS */;
+INSERT INTO `logininfo` VALUES (1,'amit','2018-04-29 00:15:15');
+/*!40000 ALTER TABLE `logininfo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `logs` (
+  `machineId` int(11) NOT NULL,
+  `user` varchar(30) DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  `severityId` int(11) NOT NULL,
+  `logMessage` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`machineId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logs`
+--
+
+LOCK TABLES `logs` WRITE;
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+INSERT INTO `logs` VALUES (1,'gilad','2018-04-29 00:23:45',2,'Downloaded Virus'),(4,'amit','2018-04-29 00:24:18',4,'Deleted chrome browser');
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `machines`
@@ -30,7 +82,7 @@ CREATE TABLE `machines` (
   `status` int(11) DEFAULT NULL,
   `os` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +120,30 @@ INSERT INTO `os` VALUES (1,'Windows'),(2,'Linux');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `severities`
+--
+
+DROP TABLE IF EXISTS `severities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `severities` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `severities`
+--
+
+LOCK TABLES `severities` WRITE;
+/*!40000 ALTER TABLE `severities` DISABLE KEYS */;
+INSERT INTO `severities` VALUES (1,'Critical'),(2,'High'),(3,'Medium'),(4,'Low');
+/*!40000 ALTER TABLE `severities` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `statuses`
 --
 
@@ -100,4 +176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-16 12:40:20
+-- Dump completed on 2018-04-29  1:32:40
