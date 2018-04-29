@@ -49,11 +49,11 @@ DROP TABLE IF EXISTS `logs`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `logs` (
   `machineId` int(11) NOT NULL,
-  `user` varchar(30) DEFAULT NULL,
-  `time` datetime DEFAULT NULL,
+  `user` varchar(30) NOT NULL,
+  `time` datetime NOT NULL,
   `severityId` int(11) NOT NULL,
-  `logMessage` varchar(256) DEFAULT NULL,
-  PRIMARY KEY (`machineId`)
+  `logMessage` varchar(256) NOT NULL,
+  PRIMARY KEY (`machineId`,`user`,`time`,`severityId`,`logMessage`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -63,7 +63,7 @@ CREATE TABLE `logs` (
 
 LOCK TABLES `logs` WRITE;
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
-INSERT INTO `logs` VALUES (1,'gilad','2018-04-29 00:23:45',2,'Downloaded Virus'),(4,'amit','2018-04-29 00:24:18',4,'Deleted chrome browser');
+INSERT INTO `logs` VALUES (1,'gilad','2018-04-29 00:23:45',2,'Downloaded Virus'),(1,'Netzer','2018-04-29 23:38:41',5,'Opened Firefox browser'),(2,'Eilon','2018-04-29 23:37:44',4,'Activated cmd.exe'),(2,'Paz','2018-04-29 19:48:47',3,'Downloaded exe file'),(3,'Sharon','2018-04-29 23:27:15',5,'Activated Calculator'),(4,'amit','2018-04-29 00:24:18',4,'Deleted chrome browser'),(4,'Amit','2018-04-29 23:39:59',1,'Activated unknown executable file'),(5,'Paz','2018-04-29 23:28:07',5,'Activated Excel');
 /*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +139,7 @@ CREATE TABLE `severities` (
 
 LOCK TABLES `severities` WRITE;
 /*!40000 ALTER TABLE `severities` DISABLE KEYS */;
-INSERT INTO `severities` VALUES (1,'Critical'),(2,'High'),(3,'Medium'),(4,'Low');
+INSERT INTO `severities` VALUES (1,'Critical'),(2,'High'),(3,'Medium'),(4,'Low'),(5,'Info');
 /*!40000 ALTER TABLE `severities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,4 +176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-29  1:32:40
+-- Dump completed on 2018-04-29 23:41:27
